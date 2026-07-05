@@ -1,12 +1,11 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class BotController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float detectionRange = 10f;
-    [SerializeField] private int difficulty = 1; // 1-3
+    [SerializeField] private int difficulty = 1;
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -58,20 +57,17 @@ public class BotController : MonoBehaviour
 
     private void MakeDecision()
     {
-        // Random movement
         moveDirection = new Vector3(
             Random.Range(-1f, 1f),
             0,
             Random.Range(0.5f, 1f)
         ).normalized;
 
-        // Jump occasionally
         if (isGrounded && Random.value > 0.7f)
         {
             Jump();
         }
 
-        // Use ability occasionally
         if (Random.value > 0.8f && difficulty >= 2)
         {
             UseRandomAbility();
@@ -125,18 +121,7 @@ public class BotController : MonoBehaviour
         }
     }
 
-    public void AddScore(int points)
-    {
-        botScore += points;
-    }
-
-    public int GetScore()
-    {
-        return botScore;
-    }
-
-    public void SetDifficulty(int diff)
-    {
-        difficulty = Mathf.Clamp(diff, 1, 3);
-    }
+    public void AddScore(int points) => botScore += points;
+    public int GetScore() => botScore;
+    public void SetDifficulty(int diff) => difficulty = Mathf.Clamp(diff, 1, 3);
 }

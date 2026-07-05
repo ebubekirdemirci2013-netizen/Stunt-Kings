@@ -58,8 +58,5 @@ public class CharacterSkinManager : MonoBehaviour
         }
     }
 
-    public Dictionary<string, CharacterSkin> GetAllSkins()
-    {
-        return new Dictionary<string, CharacterSkin>(skins);
-    }
+    public Dictionary<string, CharacterSkin> GetAllSkins() => new Dictionary<string, CharacterSkin>(skins);
 }

@@ -30,7 +30,6 @@ public class GameController : MonoBehaviour
         if (online)
         {
             Debug.Log($"🌐 Online Match startet mit bis zu {maxPlayersPerMatch} Spielern!");
-            // Photon PUN 2 Integration
         }
         else
         {
@@ -61,23 +60,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public int GetPlayerCount()
-    {
-        return playerCount;
-    }
-
-    public int GetMaxPlayers()
-    {
-        return maxPlayersPerMatch;
-    }
-
-    public List<PlayerController> GetActivePlayers()
-    {
-        return new List<PlayerController>(activePlayers);
-    }
-
-    public bool IsMatchFull()
-    {
-        return playerCount >= maxPlayersPerMatch;
-    }
+    public int GetPlayerCount() => playerCount;
+    public int GetMaxPlayers() => maxPlayersPerMatch;
+    public List<PlayerController> GetActivePlayers() => new List<PlayerController>(activePlayers);
+    public bool IsMatchFull() => playerCount >= maxPlayersPerMatch;
 }

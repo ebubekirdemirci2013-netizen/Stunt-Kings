@@ -20,13 +20,11 @@ public class ShopUIController : MonoBehaviour
         paymentManager = PaymentManager.Instance;
         shopManager = ShopManager.Instance;
 
-        // Button Listeners
         applePayButton.onClick.AddListener(() => InitiatePurchase(PaymentProvider.ApplePay));
         googlePayButton.onClick.AddListener(() => InitiatePurchase(PaymentProvider.GooglePay));
         payPalButton.onClick.AddListener(() => InitiatePurchase(PaymentProvider.PayPal));
         klarnaButton.onClick.AddListener(() => InitiatePurchase(PaymentProvider.Klarna));
 
-        // Platform-specific button visibility
         #if UNITY_IOS
             googlePayButton.gameObject.SetActive(false);
             payPalButton.gameObject.SetActive(true);
@@ -76,7 +74,6 @@ public class ShopUIController : MonoBehaviour
         }
 
         Debug.Log($"💳 Initiating purchase via {provider}...");
-
         paymentManager.PurchaseProduct(selectedProductId, provider, OnPaymentComplete);
     }
 

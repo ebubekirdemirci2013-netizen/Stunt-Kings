@@ -26,7 +26,7 @@ public class PaymentManager : MonoBehaviour
     public static PaymentManager Instance { get; private set; }
 
     [SerializeField] private List<PaymentProduct> products = new List<PaymentProduct>();
-    [SerializeField] private bool sandboxMode = true; // Test mode
+    [SerializeField] private bool sandboxMode = true;
 
     private PaymentProvider lastUsedProvider = PaymentProvider.ApplePay;
     private Action<bool, string> onPaymentComplete;
@@ -92,9 +92,6 @@ public class PaymentManager : MonoBehaviour
     private void ProcessApplePayment(PaymentProduct product)
     {
         Debug.Log($"🍎 Apple Pay - Processing {product.name}...");
-        // Apple Pay Implementation
-        // In production: Use Unity IAP or native implementation
-        
         if (sandboxMode)
         {
             Debug.Log("✅ Apple Pay - TEST PAYMENT SUCCESS");
@@ -105,9 +102,6 @@ public class PaymentManager : MonoBehaviour
     private void ProcessGooglePayment(PaymentProduct product)
     {
         Debug.Log($"🔵 Google Pay - Processing {product.name}...");
-        // Google Play Billing Implementation
-        // In production: Use Unity IAP
-        
         if (sandboxMode)
         {
             Debug.Log("✅ Google Pay - TEST PAYMENT SUCCESS");
@@ -118,9 +112,6 @@ public class PaymentManager : MonoBehaviour
     private void ProcessPayPalPayment(PaymentProduct product)
     {
         Debug.Log($"🅿️ PayPal - Processing {product.name}...");
-        // PayPal SDK Implementation
-        // In production: Use PayPal Mobile SDK
-        
         if (sandboxMode)
         {
             Debug.Log("✅ PayPal - TEST PAYMENT SUCCESS");
@@ -131,9 +122,6 @@ public class PaymentManager : MonoBehaviour
     private void ProcessKlarnaPayment(PaymentProduct product)
     {
         Debug.Log($"🔴 Klarna - Processing {product.name}...");
-        // Klarna SDK Implementation
-        // In production: Use Klarna Mobile SDK
-        
         if (sandboxMode)
         {
             Debug.Log("✅ Klarna - TEST PAYMENT SUCCESS");
@@ -162,24 +150,8 @@ public class PaymentManager : MonoBehaviour
         Debug.Log($"➕ Product added: {product.name} ({product.price} {product.currency})");
     }
 
-    public List<PaymentProduct> GetProducts()
-    {
-        return new List<PaymentProduct>(products);
-    }
-
-    public PaymentProduct GetProduct(string productId)
-    {
-        return products.Find(p => p.productId == productId);
-    }
-
-    public void SetSandboxMode(bool enabled)
-    {
-        sandboxMode = enabled;
-        Debug.Log($"🧪 Sandbox Mode: {(enabled ? "ON" : "OFF")}");
-    }
-
-    public PaymentProvider GetLastUsedProvider()
-    {
-        return lastUsedProvider;
-    }
+    public List<PaymentProduct> GetProducts() => new List<PaymentProduct>(products);
+    public PaymentProduct GetProduct(string productId) => products.Find(p => p.productId == productId);
+    public void SetSandboxMode(bool enabled) => sandboxMode = enabled;
+    public PaymentProvider GetLastUsedProvider() => lastUsedProvider;
 }
